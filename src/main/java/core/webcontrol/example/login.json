@@ -1,0 +1,35 @@
+{
+  "name": "Login",
+  "actions": [
+    {
+      "id" : "loginTab",
+      "type": "click",
+      "func": "firstById",
+      "parentId": null,
+      "localisation": "{og.btn_loginTab}"
+    },
+    {
+      "id" : "loginUsername",
+      "type": "input",
+      "func": "firstById",
+      "parentId": null,
+      "localisation": "{og.input_loginUsername}",
+      "value": "{#input}"
+    },
+    {
+      "id" : "loginPassword",
+      "type": "input",
+      "func": "firstById",
+      "parentId": null,
+      "localisation": "{og.input_loginPassword}",
+      "value": "{#input}"
+    },
+    {
+      "id" : "loginSubmit",
+      "type": "click",
+      "func": "firstById",
+      "parentId": null,
+      "localisation": "{og.btn_loginSubmit}"
+    }
+  ]
+}
