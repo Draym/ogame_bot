@@ -2,34 +2,41 @@
   "name": "Login",
   "actions": [
     {
-      "id" : "loginTab",
-      "type": "click",
-      "func": "firstById",
-      "parentId": null,
-      "localisation": "{og.btn_loginTab}"
+      "id": "loginAds",
+      "type": "jquery.executeScript",
+      "params": {
+        "jquery_script": "$('.openX_interstitial').remove();"
+      }
     },
     {
-      "id" : "loginUsername",
-      "type": "input",
-      "func": "firstById",
-      "parentId": null,
-      "localisation": "{og.input_loginUsername}",
-      "value": "{#input}"
+      "id": "loginTab",
+      "type": "click.firstByCss",
+      "params": {
+        "css_selector": "{og.btn_loginTab}"
+      }
     },
     {
-      "id" : "loginPassword",
-      "type": "input",
-      "func": "firstById",
-      "parentId": null,
-      "localisation": "{og.input_loginPassword}",
-      "value": "{#input}"
+      "id": "loginUsername",
+      "type": "input.firstByCss",
+      "params": {
+        "css_selector": "{og.input_loginUsername}"
+      }
     },
     {
-      "id" : "loginSubmit",
-      "type": "click",
-      "func": "firstById",
-      "parentId": null,
-      "localisation": "{og.btn_loginSubmit}"
+      "id": "loginPassword",
+      "type": "input.firstByCss",
+      "params": {
+        "css_selector": "{og.input_loginPassword}",
+        "value": "{#input}"
+      }
+    },
+    {
+      "id": "loginSubmit",
+      "type": "click.firstByCss",
+      "params": {
+        "css_selector": "{og.btn_loginSubmit}",
+        "value": "{#input}"
+      }
     }
   ]
 }

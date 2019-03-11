@@ -3,24 +3,25 @@
   "actions": [
     {
       "id" : "launchServerPlay",
-      "type": "click",
-      "func": "firstByCss",
-      "parentId": null,
-      "localisation": "{og.btn_authPlay}"
+      "type": "click.firstByCss",
+      "params": {
+        "@?@input_css": "{og.btn_authPlay}"
+      }
     },
     {
       "id": "selectServerAccountsContainer",
-      "type": "search",
-      "func": "firstById",
-      "parentId": null,
-      "localisation": "{og.search_serverAccountsContainer}"
+      "type": "search.firstByCss",
+      "params": {
+        "@?@input_css": "{og.search_serverAccountsContainer}"
+      }
     },
     {
       "id": "selectServerAccounts",
-      "type": "search",
-      "func": "allByCss",
-      "parentId": "selectServerAccountsContainer",
-      "localisation": "{og.search_serverAccounts}"
+      "type": "search.firstByCss",
+      "params": {
+        "@?@driver": "selectServerAccountsContainer",
+        "@?@input_css": "{og.search_serverAccounts}"
+      }
     },
     {
       "id": "selectServerAccount",

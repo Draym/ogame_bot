@@ -3,6 +3,7 @@ package utils;
 public class WebIdsData {
 
     /** LOGIN **/
+    public final String btn_loginAds;
     public final String btn_loginTab;
     public final String input_loginUsername;
     public final String input_loginPassword;
@@ -45,6 +46,9 @@ public class WebIdsData {
     public final String btn_moveATTAQUE_GROUPE;
     public final String btn_moveDETRUIRE;
 
+    /** UI **/
+    public final String web_driver;
+
     /**
      * SINGLETON
      **/
@@ -53,16 +57,17 @@ public class WebIdsData {
 
     private WebIdsData() {
 
-        this.btn_buildLaunch = "a.build-it";
+        this.btn_buildLaunch = "div.openX_interstitial";
         this.input_buildQuantity = "input#number.amount_input";
         this.btn_authPlay = "button.button.button-primary.button-md";
         this.btn_launchServerAccount = "button.btn.btn-primary";
-        this.search_serverAccountsContainer = "myAccounts";
+        this.search_serverAccountsContainer = "section#myAccounts";
         this.search_serverAccounts = "div.rt-tr-group";
-        this.btn_loginTab = "ui-id-1";
-        this.input_loginUsername = "usernameLogin";
-        this.input_loginPassword = "passwordLogin";
-        this.btn_loginSubmit = "loginSubmit";
+        this.btn_loginAds = "a#ui-id-1";
+        this.btn_loginTab = "a#ui-id-1";
+        this.input_loginUsername = "input#usernameLogin";
+        this.input_loginPassword = "input#passwordLogin";
+        this.btn_loginSubmit = "input#loginSubmit";
         this.btn_fleetContinue = "a#continue.on";
         this.btn_fleetPosG = "input#galaxy.galaxy.hideNumberSpin";
         this.btn_fleetPosS = "input#system.system.hideNumberSpin";
@@ -86,6 +91,7 @@ public class WebIdsData {
         this.btn_moveATTAQUER = "";
         this.btn_moveATTAQUE_GROUPE = "";
         this.btn_moveDETRUIRE = "";
+        this.web_driver = "@driver";
     }
 
     public static WebIdsData get() {

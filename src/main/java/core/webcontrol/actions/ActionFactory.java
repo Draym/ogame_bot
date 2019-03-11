@@ -1,8 +1,9 @@
 package core.webcontrol.actions;
 
-import core.webcontrol.actions.click.Click;
-import core.webcontrol.actions.input.Input;
-import core.webcontrol.actions.search.Search;
+import core.webcontrol.actions.methods.click.Click;
+import core.webcontrol.actions.methods.input.Input;
+import core.webcontrol.actions.methods.jquery.Jquery;
+import core.webcontrol.actions.methods.search.Search;
 
 import java.util.HashMap;
 
@@ -12,6 +13,7 @@ public class ActionFactory {
             put(EAction.CLICK, new Click());
             put(EAction.SEARCH, new Search());
             put(EAction.INPUT, new Input());
+            put(EAction.JQUERY, new Jquery());
         }
     };
 

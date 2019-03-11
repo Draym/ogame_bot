@@ -10,19 +10,19 @@ import utils.WebIdsData;
 public class LoginPage implements Directive {
 
     private void clickLogin(WebDriver driver) {
-        Click.byId(driver, WebIdsData.get().btn_loginTab);
+        Click.byCss(driver, WebIdsData.get().btn_loginTab);
     }
 
     private void setUserName(WebDriver driver, String userName) {
-        Input.byId(driver, WebIdsData.get().input_loginUsername, userName);
+        Input.byCss(driver, WebIdsData.get().input_loginUsername, userName);
     }
 
     private void setPassword(WebDriver driver, String password) {
-        Input.byId(driver, WebIdsData.get().input_loginPassword, password);
+        Input.byCss(driver, WebIdsData.get().input_loginPassword, password);
     }
 
     private void submitButton(WebDriver driver) {
-        Click.byId(driver, WebIdsData.get().btn_loginSubmit);
+        Click.byCss(driver, WebIdsData.get().btn_loginSubmit);
     }
 
     public void run(WebDriver driver, DirectiveParameters parameters) {

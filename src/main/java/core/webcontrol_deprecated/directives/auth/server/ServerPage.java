@@ -17,7 +17,7 @@ public class ServerPage implements Directive {
     }
 
     private void selectServer(WebDriver driver, String serverName) {
-        WebElement account = Search.firstById(driver, WebIdsData.get().search_serverAccountsContainer);
+        WebElement account = Search.firstByCss(driver, WebIdsData.get().search_serverAccountsContainer);
         List<WebElement> servers = Search.allByCss(account, WebIdsData.get().search_serverAccounts);
 
         for (WebElement server : servers) {
