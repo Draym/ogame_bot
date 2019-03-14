@@ -39,6 +39,16 @@ public class Main {
         }
     }
 
+    public static void version3(WebDriver driver) {
+        ScriptManager scriptManager1 = new InspectElement();
+
+        try {
+            scriptManager1.run(driver);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
     public static void main(String[] args) {
         WebDriver driver = WebDriverFactory.get(EDriver.CHROME);
 
@@ -46,6 +56,7 @@ public class Main {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         //version1(driver);
-        version2(driver);
+        //version2(driver);
+        version3(driver);
     }
 }
