@@ -2,41 +2,94 @@ package core.scripts;
 
 
 import core.webcontrol.actions.methods.ActionMethod;
+import core.webcontrol.actions.methods.browser.Browser;
 import core.webcontrol.actions.methods.click.Click;
 import core.webcontrol.actions.methods.input.Input;
 import core.webcontrol.actions.methods.jquery.Jquery;
-import core.webcontrol.directives.Directive;
+import core.webcontrol.actions.methods.search.Search;
+import core.webcontrol.script.Script;
+import core.webcontrol.script.bloc.ScriptBloc;
 import org.openqa.selenium.WebDriver;
-import utils.PlayerStaticData;
-import utils.WebIdsData;
+import utils.tools.FileTools;
+import utils.tools.JsonTools;
+import utils.storage.PlayerStaticData;
+import utils.storage.WebIdsData;
 
-public class GoToGame_v2 implements Script {
-    @Override
-    public void run(WebDriver driver) throws Exception {
-        Directive directive = new Directive("GoToGame");
+public class GoToGame_v2 implements ScriptManager {
+
+    public ScriptBloc createBloc1() {
+        ScriptBloc container = new ScriptBloc("Login");
 
         ActionMethod method0 = new Jquery.Script();
-        method0.params.put("jquery_script", "$('.openX_interstitial').remove();");
-        directive.addAction(method0);
+        method0.blocParams.put("jquery_script", "$('.openX_interstitial').remove();");
+        container.addTask(method0);
 
         ActionMethod method1 = new Click.FirstByCss();
-        method1.params.put("css_selector", WebIdsData.get().btn_loginTab);
-        directive.addAction(method1);
+        method1.blocParams.put("css_selector", WebIdsData.get().btn_loginTab);
+        container.addTask(method1);
 
         ActionMethod method2 = new Input.FirstByCss();
-        method2.params.put("css_selector", WebIdsData.get().input_loginUsername);
-        method2.params.put("value", PlayerStaticData.email);
-        directive.addAction(method2);
+        method2.blocParams.put("css_selector", WebIdsData.get().input_loginUsername);
+        method2.blocParams.put("value", PlayerStaticData.email);
+        container.addTask(method2);
 
         ActionMethod method3 = new Input.FirstByCss();
-        method3.params.put("css_selector", WebIdsData.get().input_loginPassword);
-        method3.params.put("value", PlayerStaticData.password);
-        directive.addAction(method3);
+        method3.blocParams.put("css_selector", WebIdsData.get().input_loginPassword);
+        method3.blocParams.put("value", PlayerStaticData.password);
+        container.addTask(method3);
 
         ActionMethod method4 = new Click.FirstByCss();
-        method4.params.put("css_selector", WebIdsData.get().btn_loginSubmit);
-        directive.addAction(method4);
+        method4.blocParams.put("css_selector", WebIdsData.get().btn_loginSubmit);
+        container.addTask(method4);
+        return container;
+    }
 
-        directive.run(driver);
+    public ScriptBloc createBloc2() {
+        ScriptBloc container = new ScriptBloc("Server");
+
+        ActionMethod method0 = new Click.FirstByCss();
+        method0.blocParams.put("css_selector", WebIdsData.get().btn_authPlay);
+        container.addTask(method0);
+
+        ActionMethod method1 = new Search.FirstByCss();
+        method1.id = WebIdsData.get().search_serverAccountsContainer;
+        method1.blocParams.put("css_selector", WebIdsData.get().search_serverAccountsContainer);
+        container.addTask(method1);
+
+        ActionMethod method2 = new Search.FirstByCssAndValue();
+        method2.id = "Line#server";
+        method2.blocParams.put("css_selector", WebIdsData.get().search_serverAccounts);
+        method2.blocParams.put("value", "Fenrir");
+        method2.blocParams.put(WebIdsData.get().web_driver, WebIdsData.get().search_serverAccountsContainer);
+        container.addTask(method2);
+
+        ActionMethod method3 = new Click.FirstByCss();
+        method3.blocParams.put(WebIdsData.get().web_driver, "Line#server");
+        method3.blocParams.put("css_selector", WebIdsData.get().btn_launchServerAccount);
+        container.addTask(method3);
+
+        ActionMethod method4 = new Browser.CloseTab();
+        method4.blocParams.put("open tabIndex", "1");
+        method4.blocParams.put("close tabIndex", "0");
+        container.addTask(method4);
+        return container;
+    }
+
+    @Override
+    public void run(WebDriver driver) throws Exception {
+
+
+        Script script = new Script();
+        script.name = "GoToGame";
+
+        script.addBloc(this.createBloc1());
+        script.addBloc(this.createBloc2());
+
+
+        String value = JsonTools.toString(script);
+        FileTools.writeInFile("container.json", value);
+
+        Script script2 = JsonTools.toObject(value, Script.class);
+        script2.run(driver);
     }
 }

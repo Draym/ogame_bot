@@ -1,4 +1,4 @@
-package utils;
+package utils.storage;
 
 public class WebIdsData {
 
@@ -48,11 +48,16 @@ public class WebIdsData {
 
     /** UI **/
     public final String web_driver;
+    public final String click_firstByCss;
+    public final String click_firstByCssAndValue;
+    public final String input_firstByCss;
+    public final String jquery_script;
+    public final String search_firstByCss;
+    public final String browser_closeTab;
 
     /**
      * SINGLETON
      **/
-
     private static WebIdsData instance;
 
     private WebIdsData() {
@@ -91,7 +96,14 @@ public class WebIdsData {
         this.btn_moveATTAQUER = "";
         this.btn_moveATTAQUE_GROUPE = "";
         this.btn_moveDETRUIRE = "";
+
         this.web_driver = "@driver";
+        this.click_firstByCss = "FirstByCss";
+        this.click_firstByCssAndValue = "FirstByCssAndValue";
+        this.input_firstByCss = "FirstByCss";
+        this.jquery_script = "executeScript";
+        this.search_firstByCss = "FirstByCss";
+        this.browser_closeTab = "CloseTab";
     }
 
     public static WebIdsData get() {

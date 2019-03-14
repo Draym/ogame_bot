@@ -1,4 +1,4 @@
-package utils;
+package utils.storage;
 
 public class PlayerStaticData {
     public static final String email = "goro.book1@gmail.com";

@@ -9,8 +9,8 @@ import core.webcontrol_deprecated.directives.EDirective;
 import core.webcontrol_deprecated.directives.navigate.ENavigateType;
 import core.webcontrol_deprecated.directives.navigate.NavigateToDirectiveParameters;
 import org.openqa.selenium.WebDriver;
-import utils.Pair;
-import utils.WebIdsData;
+import utils.storage.Pair;
+import utils.storage.WebIdsData;
 
 public class BuildGeneric implements Directive {
     private void build(WebDriver driver, Pair<String, String> target, boolean hasQuantity, int targetQuantity) {

@@ -6,7 +6,7 @@ import core.webcontrol_deprecated.directives.build.BuildGenericDirectiveParamete
 import core.webcontrol_deprecated.directives.build.EBuildType;
 import org.openqa.selenium.WebDriver;
 
-public class BuildMetalMine implements Script {
+public class BuildMetalMine implements ScriptManager {
     public void run(WebDriver driver) throws Exception {
         DirectiveFactory.get(EDirective.BUILD).run(driver, new BuildGenericDirectiveParameters(EBuildType.ECONOMY, "Mine de métal", 0));
     }

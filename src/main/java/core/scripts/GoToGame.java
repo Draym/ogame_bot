@@ -5,9 +5,8 @@ import core.webcontrol_deprecated.directives.EDirective;
 import core.webcontrol_deprecated.directives.auth.login.LoginDirectiveParameters;
 import core.webcontrol_deprecated.directives.auth.server.ServerDirectiveParameters;
 import org.openqa.selenium.WebDriver;
-import utils.Tools;
 
-public class GoToGame implements Script {
+public class GoToGame implements ScriptManager {
 
     private String email;
     private String password;
@@ -22,6 +21,5 @@ public class GoToGame implements Script {
     public void run(WebDriver driver) throws Exception {
         DirectiveFactory.get(EDirective.LOGIN).run(driver, new LoginDirectiveParameters(this.email, this.password));
         DirectiveFactory.get(EDirective.SERVER).run(driver, new ServerDirectiveParameters(this.serverName));
-        Tools.screenshot(driver);
     }
 }

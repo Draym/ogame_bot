@@ -1,7 +1,7 @@
 import core.scripts.*;
 import org.openqa.selenium.WebDriver;
 import utils.Console;
-import utils.PlayerStaticData;
+import utils.storage.PlayerStaticData;
 import driver.WebDriverFactory;
 import driver.EDriver;
 
@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void version1(WebDriver driver) {
-        Script auth = new GoToGame(PlayerStaticData.email, PlayerStaticData.password, PlayerStaticData.serverName);
-        Script navigate = new GoToFleet();
-        Script build = new BuildMetalMine();
+        ScriptManager auth = new GoToGame(PlayerStaticData.email, PlayerStaticData.password, PlayerStaticData.serverName);
+        ScriptManager navigate = new GoToFleet();
+        ScriptManager build = new BuildMetalMine();
         try {
             Console.print("Script1--");
             auth.run(driver);
@@ -30,10 +30,10 @@ public class Main {
     }
 
     public static void version2(WebDriver driver) {
-        Script script1 = new GoToGame_v2();
+        ScriptManager scriptManager1 = new GoToGame_v2();
 
         try {
-            script1.run(driver);
+            scriptManager1.run(driver);
         } catch (Exception ex) {
             System.out.println(ex);
         }

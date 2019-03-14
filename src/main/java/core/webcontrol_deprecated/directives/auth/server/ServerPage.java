@@ -5,7 +5,7 @@ import core.webcontrol_deprecated.actions.Search;
 import org.openqa.selenium.*;
 import core.webcontrol_deprecated.directives.DirectiveParameters;
 import core.webcontrol_deprecated.directives.Directive;
-import utils.WebIdsData;
+import utils.storage.WebIdsData;
 
 import java.util.ArrayList;
 import java.util.List;

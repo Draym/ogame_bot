@@ -1,4 +1,4 @@
-package utils;
+package utils.tools;
 
 public class TString {
     public static boolean isEqual(String v1, String v2) {

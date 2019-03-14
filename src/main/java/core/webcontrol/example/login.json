@@ -3,28 +3,24 @@
   "actions": [
     {
       "id": "loginAds",
-      "type": "jquery.executeScript",
       "params": {
         "jquery_script": "$('.openX_interstitial').remove();"
       }
     },
     {
       "id": "loginTab",
-      "type": "click.firstByCss",
       "params": {
         "css_selector": "{og.btn_loginTab}"
       }
     },
     {
       "id": "loginUsername",
-      "type": "input.firstByCss",
       "params": {
         "css_selector": "{og.input_loginUsername}"
       }
     },
     {
       "id": "loginPassword",
-      "type": "input.firstByCss",
       "params": {
         "css_selector": "{og.input_loginPassword}",
         "value": "{#input}"
@@ -32,7 +28,6 @@
     },
     {
       "id": "loginSubmit",
-      "type": "click.firstByCss",
       "params": {
         "css_selector": "{og.btn_loginSubmit}",
         "value": "{#input}"

@@ -2,20 +2,22 @@ package core.webcontrol.actions;
 
 import core.webcontrol.actions.methods.ActionMethod;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Action {
-    protected Map<String, ActionMethod> methods;
+    protected List<String> methods;
 
     protected abstract void createMethods();
 
     public Action() {
-        this.methods = new HashMap<>();
+        this.methods = new ArrayList<>();
         this.createMethods();
     }
 
-    public Map<String, ActionMethod> getMethods(){
+    public List<String> getMethods(){
         return this.methods;
     }
+
+    public abstract ActionMethod getMethod(String id);
 }

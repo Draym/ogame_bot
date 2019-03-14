@@ -1,7 +1,7 @@
 package core.webcontrol_deprecated.directives.build;
 
 
-import utils.Pair;
+import utils.storage.Pair;
 
 import java.util.*;
 

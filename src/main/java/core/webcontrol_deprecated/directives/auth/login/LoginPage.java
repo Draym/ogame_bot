@@ -5,7 +5,7 @@ import core.webcontrol_deprecated.actions.Input;
 import org.openqa.selenium.WebDriver;
 import core.webcontrol_deprecated.directives.DirectiveParameters;
 import core.webcontrol_deprecated.directives.Directive;
-import utils.WebIdsData;
+import utils.storage.WebIdsData;
 
 public class LoginPage implements Directive {
 
