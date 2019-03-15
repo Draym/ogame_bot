@@ -1,6 +1,6 @@
-package core.webcontrol.actions;
+package core.webScript.actions;
 
-import core.webcontrol.actions.methods.ActionMethod;
+import core.webScript.actions.methods.ActionMethod;
 
 import java.util.ArrayList;
 import java.util.List;

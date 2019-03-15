@@ -1,13 +1,15 @@
-package core.webcontrol.actions.methods.jquery;
+package core.webScript.actions.methods.jquery;
 
-import core.webcontrol.actions.Action;
-import core.webcontrol.actions.methods.ActionMethod;
+import core.webScript.actions.Action;
+import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import utils.storage.WebIdsData;
 import utils.tools.TString;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Jquery extends Action {
@@ -44,6 +46,11 @@ public class Jquery extends Action {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
 
             this.executeScript(target, (String) this.blocParams.get(this.web_inputScript));
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            return new ArrayList<>();
         }
     }
 }

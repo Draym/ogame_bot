@@ -1,6 +1,6 @@
-package core.webcontrol.actions.methods;
+package core.webScript.actions.methods;
 
-import core.webcontrol.script.bloc.Directive;
+import core.webScript.script.bloc.Directive;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import utils.storage.WebIdsData;

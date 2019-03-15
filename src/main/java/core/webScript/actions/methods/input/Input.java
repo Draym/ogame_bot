@@ -1,13 +1,13 @@
-package core.webcontrol.actions.methods.input;
+package core.webScript.actions.methods.input;
 
-import core.webcontrol.actions.Action;
-import core.webcontrol.actions.methods.ActionMethod;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
+import core.webScript.actions.Action;
+import core.webScript.actions.methods.ActionMethod;
+import org.openqa.selenium.*;
 import utils.storage.WebIdsData;
 import utils.tools.TString;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Input extends Action {
@@ -32,7 +32,11 @@ public class Input extends Action {
         private final String web_inputValue = "value";
 
         private void firstByCss(SearchContext container, String css, String value) {
-            container.findElement(By.cssSelector(css)).sendKeys(value);
+            WebElement element = container.findElement(By.cssSelector(css));
+
+            if (element == null)
+                throw new NotFoundException("[Input.FirstByCss] element {" + css + "} has not been found in " + container.toString());
+            element.sendKeys(value);
         }
 
         @Override
@@ -45,6 +49,11 @@ public class Input extends Action {
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
             this.firstByCss(target, (String) this.blocParams.get(this.web_inputCSS), (String) this.blocParams.get(this.web_inputValue));
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            return new ArrayList<>();
         }
     }
 }

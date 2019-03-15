@@ -1,4 +1,4 @@
-package core.webcontrol.script.bloc;
+package core.webScript.script.bloc;
 
 import org.openqa.selenium.WebDriver;
 
@@ -33,6 +33,16 @@ public class ScriptBloc extends Directive {
     @Override
     protected void createParams() {
         // NO USAGE
+    }
+
+    @Override
+    public List<String> getResultIds() {
+        List<String> result = new ArrayList<>();
+
+        for(Directive task : tasks) {
+            result.addAll(task.getResultIds());
+        }
+        return result;
     }
 
     public void addTask(Directive task) {

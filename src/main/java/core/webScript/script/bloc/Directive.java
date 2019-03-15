@@ -1,8 +1,9 @@
-package core.webcontrol.script.bloc;
+package core.webScript.script.bloc;
 
 import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Directive {
@@ -23,4 +24,5 @@ public abstract class Directive {
     }
     public abstract void run(WebDriver driver, Map<String, Object> globalParams);
     protected abstract void createParams();
+    public abstract List<String> getResultIds();
 }

@@ -1,11 +1,12 @@
-package core.webcontrol.actions.methods.search;
+package core.webScript.actions.methods.search;
 
-import core.webcontrol.actions.Action;
-import core.webcontrol.actions.methods.ActionMethod;
+import core.webScript.actions.Action;
+import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.*;
 import utils.storage.WebIdsData;
 import utils.tools.TString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,11 @@ public class Search extends Action {
         private final String web_inputCSS = "css_selector";
 
         private WebElement firstByCss(SearchContext container, String css) {
-            return container.findElement(By.cssSelector(css));
+            WebElement element = container.findElement(By.cssSelector(css));
+
+            if (element == null)
+                throw new NotFoundException("[Search.FirstByCss] element {" + css + "} has not been found in " + container.toString());
+            return element;
         }
 
         @Override
@@ -42,6 +47,13 @@ public class Search extends Action {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
             WebElement result = this.firstByCss(target, (String) this.blocParams.get(this.web_inputCSS));
             globalParams.put(this.id, result);
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            List<String> result = new ArrayList<>();
+            result.add(this.id);
+            return result;
         }
     }
     /**
@@ -61,7 +73,7 @@ public class Search extends Action {
                     return element;
                 }
             }
-            throw new NotFoundException("[Search][firstByValue] element [" + value + "] not found.");
+            throw new NotFoundException("[Search.FirstByValue] element {" + value + "} has not been found");
         }
 
         @Override
@@ -78,6 +90,13 @@ public class Search extends Action {
             WebElement result = this.firstByValue(resultList, (String) this.blocParams.get(this.web_inputValue));
 
             globalParams.put(this.id, result);
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            List<String> result = new ArrayList<>();
+            result.add(this.id);
+            return result;
         }
     }
 
@@ -101,6 +120,13 @@ public class Search extends Action {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
             List<WebElement> result = this.allByCss(target, (String) this.blocParams.get(this.web_inputCSS));
             globalParams.put(this.id, result);
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            List<String> result = new ArrayList<>();
+            result.add(this.id);
+            return result;
         }
     }
 }

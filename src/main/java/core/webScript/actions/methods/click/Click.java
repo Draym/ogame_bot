@@ -1,11 +1,12 @@
-package core.webcontrol.actions.methods.click;
+package core.webScript.actions.methods.click;
 
-import core.webcontrol.actions.Action;
-import core.webcontrol.actions.methods.ActionMethod;
+import core.webScript.actions.Action;
+import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.*;
 import utils.storage.WebIdsData;
 import utils.tools.TString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,11 @@ public class Click extends Action {
         private final String web_inputCSS = "css_selector";
 
         private void firstByCss(SearchContext container, String css) {
-            container.findElement(By.cssSelector(css)).click();
+            WebElement element = container.findElement(By.cssSelector(css));
+
+            if (element == null)
+                throw new NotFoundException("[Click.FirstByCss] element {" + css + "} has not been found in " + container.toString());
+            element.click();
         }
 
         @Override
@@ -46,6 +51,11 @@ public class Click extends Action {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
 
             this.firstByCss(target, (String) this.blocParams.get(this.web_inputCSS));
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            return new ArrayList<>();
         }
     }
 
@@ -67,7 +77,7 @@ public class Click extends Action {
                     return;
                 }
             }
-            throw new NotFoundException("[Click][firstByCssAndValue] element [" + value + "] not found.");
+            throw new NotFoundException("[Click.FirstByCssAndValue] element {" + value + "} not found.");
         }
 
         @Override
@@ -80,6 +90,11 @@ public class Click extends Action {
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
             this.firstByCssAndValue(target, (String) this.blocParams.get(this.web_inputCSS), (String) this.blocParams.get(this.web_inputValue));
+        }
+
+        @Override
+        public List<String> getResultIds() {
+            return new ArrayList<>();
         }
     }
 }

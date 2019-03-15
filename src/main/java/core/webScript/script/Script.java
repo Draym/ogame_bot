@@ -1,6 +1,6 @@
-package core.webcontrol.script;
+package core.webScript.script;
 
-import core.webcontrol.script.bloc.Directive;
+import core.webScript.script.bloc.Directive;
 import org.openqa.selenium.WebDriver;
 import utils.Console;
 

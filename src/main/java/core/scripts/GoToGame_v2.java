@@ -1,14 +1,14 @@
 package core.scripts;
 
 
-import core.webcontrol.actions.methods.ActionMethod;
-import core.webcontrol.actions.methods.browser.Browser;
-import core.webcontrol.actions.methods.click.Click;
-import core.webcontrol.actions.methods.input.Input;
-import core.webcontrol.actions.methods.jquery.Jquery;
-import core.webcontrol.actions.methods.search.Search;
-import core.webcontrol.script.Script;
-import core.webcontrol.script.bloc.ScriptBloc;
+import core.webScript.actions.methods.ActionMethod;
+import core.webScript.actions.methods.browser.Browser;
+import core.webScript.actions.methods.click.Click;
+import core.webScript.actions.methods.input.Input;
+import core.webScript.actions.methods.jquery.Jquery;
+import core.webScript.actions.methods.search.Search;
+import core.webScript.script.Script;
+import core.webScript.script.bloc.ScriptBloc;
 import org.openqa.selenium.WebDriver;
 import utils.tools.FileTools;
 import utils.tools.JsonTools;

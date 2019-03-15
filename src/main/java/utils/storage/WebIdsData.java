@@ -54,6 +54,12 @@ public class WebIdsData {
     public final String jquery_script;
     public final String search_firstByCss;
     public final String browser_closeTab;
+    public final String browser_waitTime;
+    public final String get_firstByCss;
+    public final String http_get;
+    public final String http_post;
+    public final String http_put;
+    public final String http_delete;
 
     /**
      * SINGLETON
@@ -104,6 +110,12 @@ public class WebIdsData {
         this.jquery_script = "executeScript";
         this.search_firstByCss = "FirstByCss";
         this.browser_closeTab = "CloseTab";
+        this.browser_waitTime = "WaitTime";
+        this.get_firstByCss = "FirstByCss";
+        this.http_get = "httpGET";
+        this.http_post = "httpPOST";
+        this.http_put = "httpPUT";
+        this.http_delete = "httpDELETE";
     }
 
     public static WebIdsData get() {

@@ -1,9 +1,9 @@
-package core.webcontrol.actions;
+package core.webScript.actions;
 
-import core.webcontrol.actions.methods.click.Click;
-import core.webcontrol.actions.methods.input.Input;
-import core.webcontrol.actions.methods.jquery.Jquery;
-import core.webcontrol.actions.methods.search.Search;
+import core.webScript.actions.methods.click.Click;
+import core.webScript.actions.methods.input.Input;
+import core.webScript.actions.methods.jquery.Jquery;
+import core.webScript.actions.methods.search.Search;
 
 import java.util.HashMap;
 

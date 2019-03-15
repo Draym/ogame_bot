@@ -1,4 +1,4 @@
-package core.webcontrol.actions;
+package core.webScript.actions;
 
 public enum EAction {
     INPUT("input"),
