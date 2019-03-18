@@ -32,15 +32,15 @@ public class OpCondition extends JobBloc {
         for (Pair<Condition, JobBloc> bloc : opIf) {
             if (this.checkCondition(bloc.key, globalParams)) {
                 bloc.value.run(driver, globalParams);
-                globalParams.put(this.id, true);
+                globalParams.put(this.name, true);
                 break;
             }
         }
-        if (!globalParams.containsKey(this.id) && this.opElse != null && this.checkCondition(this.opElse.key, globalParams)) {
+        if (!globalParams.containsKey(this.name) && this.opElse != null && this.checkCondition(this.opElse.key, globalParams)) {
             this.opElse.value.run(driver, globalParams);
-            globalParams.put(this.id, true);
+            globalParams.put(this.name, true);
         }
-        globalParams.put(this.id, false);
+        globalParams.put(this.name, false);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class OpCondition extends JobBloc {
     @Override
     public List<Pair<String, Class>> getResultIds() {
         List<Pair<String, Class>> result = new ArrayList<>();
-        result.add(new Pair<>(this.id, Boolean.class));
+        result.add(new Pair<>(this.name, Boolean.class));
         return result;
     }
 }

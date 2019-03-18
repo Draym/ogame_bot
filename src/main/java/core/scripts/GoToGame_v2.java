@@ -52,12 +52,12 @@ public class GoToGame_v2 implements ScriptManager {
         container.addTask(method0);
 
         ActionMethod method1 = new Search.FirstByCss();
-        method1.id = WebIdsData.get().search_serverAccountsContainer;
+        method1.name = WebIdsData.get().search_serverAccountsContainer;
         method1.blocParams.put("css_selector", WebIdsData.get().search_serverAccountsContainer);
         container.addTask(method1);
 
         ActionMethod method2 = new Search.FirstByCssAndValue();
-        method2.id = "Line#server";
+        method2.name = "Line#server";
         method2.blocParams.put("css_selector", WebIdsData.get().search_serverAccounts);
         method2.blocParams.put("value", "Fenrir");
         method2.blocParams.put(WebIdsData.get().web_driver, WebIdsData.get().search_serverAccountsContainer);

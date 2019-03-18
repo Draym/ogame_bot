@@ -74,8 +74,8 @@ public class WebIdsData {
         this.btn_launchServerAccount = "button.btn.btn-primary";
         this.search_serverAccountsContainer = "section#myAccounts";
         this.search_serverAccounts = "div.rt-tr-group";
-        this.btn_loginAds = "a#ui-id-1";
-        this.btn_loginTab = "a#ui-id-1";
+        this.btn_loginAds = "a#ui-name-1";
+        this.btn_loginTab = "a#ui-name-1";
         this.input_loginUsername = "input#usernameLogin";
         this.input_loginPassword = "input#passwordLogin";
         this.btn_loginSubmit = "input#loginSubmit";

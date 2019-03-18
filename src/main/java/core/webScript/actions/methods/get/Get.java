@@ -50,13 +50,13 @@ public class Get extends Action {
 
             String result = this.firstByCss(target, this.blocParams.get(this.web_inputCSS));
 
-            globalParams.put(this.id, result);
+            globalParams.put(this.name, result);
         }
 
         @Override
         public List<Pair<String, Class>> getResultIds() {
             List<Pair<String, Class>> result = new ArrayList<>();
-            result.add(new Pair<>(this.id, String.class));
+            result.add(new Pair<>(this.name, String.class));
             return result;
         }
     }

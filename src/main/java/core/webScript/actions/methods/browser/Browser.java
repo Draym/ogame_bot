@@ -130,13 +130,13 @@ public class Browser extends Action {
                     , Integer.parseInt(this.blocParams.get(this.pollEvery))
                     , this.blocParams.get(this.web_inputCSS));
 
-            globalParams.put(this.id, result);
+            globalParams.put(this.name, result);
         }
 
         @Override
         public List<Pair<String, Class>> getResultIds() {
             List<Pair<String, Class>> result = new ArrayList<>();
-            result.add(new Pair<>(this.id, WebElement.class));
+            result.add(new Pair<>(this.name, WebElement.class));
             return result;
         }
     }

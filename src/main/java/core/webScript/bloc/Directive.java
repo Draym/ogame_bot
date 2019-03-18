@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Directive {
-    public String id;
+    public String name;
     /**
      * blocParams can only contains String or Integer
      */
@@ -17,8 +17,8 @@ public abstract class Directive {
     public Directive() {
         this.init();
     }
-    public Directive(String id) {
-        this.id = id;
+    public Directive(String name) {
+        this.name = name;
         this.init();
     }
 
