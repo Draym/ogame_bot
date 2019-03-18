@@ -2,10 +2,9 @@ import core.scripts.*;
 import org.openqa.selenium.WebDriver;
 import utils.Console;
 import utils.storage.PlayerStaticData;
-import driver.WebDriverFactory;
-import driver.EDriver;
 
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
@@ -50,6 +49,15 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("a", 5);
+        params.put("b", 5);
+        boolean result = Test.executeCondition("a == b", params);
+
+        Console.print("Result: " + result);
+        return;
+        /*
         WebDriver driver = WebDriverFactory.get(EDriver.CHROME);
 
         driver.get(PlayerStaticData.url);
@@ -57,6 +65,6 @@ public class Main {
 
         //version1(driver);
         //version2(driver);
-        version3(driver);
+        version3(driver);*/
     }
 }

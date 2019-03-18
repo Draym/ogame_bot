@@ -3,8 +3,9 @@ package core.webScript.actions.methods.search;
 import core.webScript.actions.Action;
 import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.*;
+import utils.storage.Pair;
 import utils.storage.WebIdsData;
-import utils.tools.TString;
+import utils.tools.StringTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Search extends Action {
 
     @Override
     public ActionMethod getMethod(String id) {
-        if (TString.isEqual(id, WebIdsData.get().search_firstByCss))
+        if (StringTools.isEqual(id, WebIdsData.get().search_firstByCss))
             return new FirstByCss();
         return null;
     }
@@ -45,14 +46,14 @@ public class Search extends Action {
         @Override
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
-            WebElement result = this.firstByCss(target, (String) this.blocParams.get(this.web_inputCSS));
+            WebElement result = this.firstByCss(target, this.blocParams.get(this.web_inputCSS));
             globalParams.put(this.id, result);
         }
 
         @Override
-        public List<String> getResultIds() {
-            List<String> result = new ArrayList<>();
-            result.add(this.id);
+        public List<Pair<String, Class>> getResultIds() {
+            List<Pair<String, Class>> result = new ArrayList<>();
+            result.add(new Pair<>(this.id, WebElement.class));
             return result;
         }
     }
@@ -69,7 +70,7 @@ public class Search extends Action {
 
         private WebElement firstByValue(List<WebElement> elements, String value) {
             for (WebElement element : elements) {
-                if (TString.contains(element.getText(), value)) {
+                if (StringTools.contains(element.getText(), value)) {
                     return element;
                 }
             }
@@ -86,16 +87,16 @@ public class Search extends Action {
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
 
-            List<WebElement> resultList = this.allByCss(target, (String) this.blocParams.get(this.web_inputCSS));
-            WebElement result = this.firstByValue(resultList, (String) this.blocParams.get(this.web_inputValue));
+            List<WebElement> resultList = this.allByCss(target, this.blocParams.get(this.web_inputCSS));
+            WebElement result = this.firstByValue(resultList, this.blocParams.get(this.web_inputValue));
 
             globalParams.put(this.id, result);
         }
 
         @Override
-        public List<String> getResultIds() {
-            List<String> result = new ArrayList<>();
-            result.add(this.id);
+        public List<Pair<String, Class>> getResultIds() {
+            List<Pair<String, Class>> result = new ArrayList<>();
+            result.add(new Pair<>(this.id, WebElement.class));
             return result;
         }
     }
@@ -118,14 +119,14 @@ public class Search extends Action {
         @Override
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
-            List<WebElement> result = this.allByCss(target, (String) this.blocParams.get(this.web_inputCSS));
+            List<WebElement> result = this.allByCss(target, this.blocParams.get(this.web_inputCSS));
             globalParams.put(this.id, result);
         }
 
         @Override
-        public List<String> getResultIds() {
-            List<String> result = new ArrayList<>();
-            result.add(this.id);
+        public List<Pair<String, Class>> getResultIds() {
+            List<Pair<String, Class>> result = new ArrayList<>();
+            result.add(new Pair<>(this.id, List.class));
             return result;
         }
     }

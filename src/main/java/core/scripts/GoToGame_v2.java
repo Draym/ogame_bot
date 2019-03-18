@@ -1,14 +1,14 @@
 package core.scripts;
 
 
+import core.webScript.Job;
 import core.webScript.actions.methods.ActionMethod;
 import core.webScript.actions.methods.browser.Browser;
 import core.webScript.actions.methods.click.Click;
 import core.webScript.actions.methods.input.Input;
 import core.webScript.actions.methods.jquery.Jquery;
 import core.webScript.actions.methods.search.Search;
-import core.webScript.script.Script;
-import core.webScript.script.bloc.ScriptBloc;
+import core.webScript.bloc.JobBloc;
 import org.openqa.selenium.WebDriver;
 import utils.tools.FileTools;
 import utils.tools.JsonTools;
@@ -17,8 +17,8 @@ import utils.storage.WebIdsData;
 
 public class GoToGame_v2 implements ScriptManager {
 
-    public ScriptBloc createBloc1() {
-        ScriptBloc container = new ScriptBloc("Login");
+    public JobBloc createBloc1() {
+        JobBloc container = new JobBloc("Login");
 
         ActionMethod method0 = new Jquery.Script();
         method0.blocParams.put("jquery_script", "$('.openX_interstitial').remove();");
@@ -44,8 +44,8 @@ public class GoToGame_v2 implements ScriptManager {
         return container;
     }
 
-    public ScriptBloc createBloc2() {
-        ScriptBloc container = new ScriptBloc("Server");
+    public JobBloc createBloc2() {
+        JobBloc container = new JobBloc("Server");
 
         ActionMethod method0 = new Click.FirstByCss();
         method0.blocParams.put("css_selector", WebIdsData.get().btn_authPlay);
@@ -79,17 +79,17 @@ public class GoToGame_v2 implements ScriptManager {
     public void run(WebDriver driver) throws Exception {
 
 
-        Script script = new Script();
-        script.name = "GoToGame";
+        Job job = new Job();
+        job.name = "GoToGame";
 
-        script.addBloc(this.createBloc1());
-        script.addBloc(this.createBloc2());
+        job.addBloc(this.createBloc1());
+        job.addBloc(this.createBloc2());
 
 
-        String value = JsonTools.toString(script);
+        String value = JsonTools.toString(job);
         FileTools.writeInFile("container.json", value);
 
-        Script script2 = JsonTools.toObject(value, Script.class);
-        script2.run(driver);
+        Job job2 = JsonTools.toObject(value, Job.class);
+        job2.run(driver);
     }
 }

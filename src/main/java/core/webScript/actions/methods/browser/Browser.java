@@ -6,8 +6,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import utils.Console;
+import utils.storage.Pair;
 import utils.storage.WebIdsData;
-import utils.tools.TString;
+import utils.tools.StringTools;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,9 @@ public class Browser extends Action {
 
     @Override
     public ActionMethod getMethod(String id) {
-        if (TString.isEqual(id, WebIdsData.get().browser_closeTab))
+        if (StringTools.isEqual(id, WebIdsData.get().browser_closeTab))
             return new CloseTab();
-        else if (TString.isEqual(id, WebIdsData.get().browser_waitTime))
+        else if (StringTools.isEqual(id, WebIdsData.get().browser_waitTime))
             return new CloseTab();
         return null;
     }
@@ -56,11 +57,11 @@ public class Browser extends Action {
 
         @Override
         public void run(WebDriver driver, Map<String, Object> globalParams) {
-            this.closeTab(driver, Integer.parseInt((String) this.blocParams.get(this.tabOpen_index)), Integer.parseInt((String) this.blocParams.get(this.tabClose_index)));
+            this.closeTab(driver, Integer.parseInt(this.blocParams.get(this.tabOpen_index)), Integer.parseInt(this.blocParams.get(this.tabClose_index)));
         }
 
         @Override
-        public List<String> getResultIds() {
+        public List<Pair<String, Class>> getResultIds() {
             return new ArrayList<>();
         }
     }
@@ -83,7 +84,7 @@ public class Browser extends Action {
         @Override
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             try {
-                this.pause(driver, Integer.parseInt((String) this.blocParams.get(this.milliseconds)));
+                this.pause(driver, Integer.parseInt(this.blocParams.get(this.milliseconds)));
             } catch (Exception ex) {
                 ex.printStackTrace();
                 Console.print_err(ex.getMessage());
@@ -91,7 +92,7 @@ public class Browser extends Action {
         }
 
         @Override
-        public List<String> getResultIds() {
+        public List<Pair<String, Class>> getResultIds() {
             return new ArrayList<>();
         }
     }
@@ -125,17 +126,17 @@ public class Browser extends Action {
         public void run(WebDriver driver, Map<String, Object> globalParams) {
 
             WebElement result = this.waitElement(driver
-                    , Integer.parseInt((String) this.blocParams.get(this.timeout))
-                    , Integer.parseInt((String) this.blocParams.get(this.pollEvery))
-                    , (String) this.blocParams.get(this.web_inputCSS));
+                    , Integer.parseInt(this.blocParams.get(this.timeout))
+                    , Integer.parseInt(this.blocParams.get(this.pollEvery))
+                    , this.blocParams.get(this.web_inputCSS));
 
             globalParams.put(this.id, result);
         }
 
         @Override
-        public List<String> getResultIds() {
-            List<String> result = new ArrayList<>();
-            result.add(this.id);
+        public List<Pair<String, Class>> getResultIds() {
+            List<Pair<String, Class>> result = new ArrayList<>();
+            result.add(new Pair<>(this.id, WebElement.class));
             return result;
         }
     }

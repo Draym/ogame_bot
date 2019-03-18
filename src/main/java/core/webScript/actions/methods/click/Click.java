@@ -3,8 +3,9 @@ package core.webScript.actions.methods.click;
 import core.webScript.actions.Action;
 import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.*;
+import utils.storage.Pair;
 import utils.storage.WebIdsData;
-import utils.tools.TString;
+import utils.tools.StringTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,9 @@ public class Click extends Action {
 
     @Override
     public ActionMethod getMethod(String id) {
-        if (TString.isEqual(id, WebIdsData.get().click_firstByCss))
+        if (StringTools.isEqual(id, WebIdsData.get().click_firstByCss))
             return new FirstByCss();
-        else if (TString.isEqual(id, WebIdsData.get().click_firstByCssAndValue))
+        else if (StringTools.isEqual(id, WebIdsData.get().click_firstByCssAndValue))
             return new FirstByCss();
         return null;
     }
@@ -50,11 +51,11 @@ public class Click extends Action {
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
 
-            this.firstByCss(target, (String) this.blocParams.get(this.web_inputCSS));
+            this.firstByCss(target, this.blocParams.get(this.web_inputCSS));
         }
 
         @Override
-        public List<String> getResultIds() {
+        public List<Pair<String, Class>> getResultIds() {
             return new ArrayList<>();
         }
     }
@@ -72,7 +73,7 @@ public class Click extends Action {
             List<WebElement> elements = container.findElements(By.cssSelector(css));
 
             for (WebElement element : elements) {
-                if (TString.isEqual(element.getText(), value)) {
+                if (StringTools.isEqual(element.getText(), value)) {
                     element.click();
                     return;
                 }
@@ -89,11 +90,11 @@ public class Click extends Action {
         @Override
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
-            this.firstByCssAndValue(target, (String) this.blocParams.get(this.web_inputCSS), (String) this.blocParams.get(this.web_inputValue));
+            this.firstByCssAndValue(target, this.blocParams.get(this.web_inputCSS), this.blocParams.get(this.web_inputValue));
         }
 
         @Override
-        public List<String> getResultIds() {
+        public List<Pair<String, Class>> getResultIds() {
             return new ArrayList<>();
         }
     }

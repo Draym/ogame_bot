@@ -3,8 +3,9 @@ package core.webScript.actions.methods.input;
 import core.webScript.actions.Action;
 import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.*;
+import utils.storage.Pair;
 import utils.storage.WebIdsData;
-import utils.tools.TString;
+import utils.tools.StringTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Input extends Action {
 
     @Override
     public ActionMethod getMethod(String id) {
-        if (TString.isEqual(id, WebIdsData.get().input_firstByCss))
+        if (StringTools.isEqual(id, WebIdsData.get().input_firstByCss))
             return new FirstByCss();
         return null;
     }
@@ -48,11 +49,11 @@ public class Input extends Action {
         @Override
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
-            this.firstByCss(target, (String) this.blocParams.get(this.web_inputCSS), (String) this.blocParams.get(this.web_inputValue));
+            this.firstByCss(target, this.blocParams.get(this.web_inputCSS), this.blocParams.get(this.web_inputValue));
         }
 
         @Override
-        public List<String> getResultIds() {
+        public List<Pair<String, Class>> getResultIds() {
             return new ArrayList<>();
         }
     }

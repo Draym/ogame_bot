@@ -1,6 +1,6 @@
-package core.webScript.script;
+package core.webScript;
 
-import core.webScript.script.bloc.Directive;
+import core.webScript.bloc.Directive;
 import org.openqa.selenium.WebDriver;
 import utils.Console;
 
@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Script {
+public class Job {
     public String name;
     protected List<Directive> blocs;
 
-    public Script() {
+    public Job() {
         this.blocs = new ArrayList<>();
     }
 

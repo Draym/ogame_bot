@@ -1,6 +1,6 @@
 package utils.tools;
 
-public class TString {
+public class StringTools {
     public static boolean isEqual(String v1, String v2) {
         return v1.toLowerCase().equals(v2.toLowerCase());
     }

@@ -5,8 +5,9 @@ import core.webScript.actions.methods.ActionMethod;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+import utils.storage.Pair;
 import utils.storage.WebIdsData;
-import utils.tools.TString;
+import utils.tools.StringTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +21,13 @@ public class Jquery extends Action {
 
     @Override
     public ActionMethod getMethod(String id) {
-        if (TString.isEqual(id, WebIdsData.get().jquery_script))
+        if (StringTools.isEqual(id, WebIdsData.get().jquery_script))
             return new Script();
         return null;
     }
 
     /**
-     * Script
+     * Job
      ***/
     public static class Script extends ActionMethod {
 
@@ -45,11 +46,11 @@ public class Jquery extends Action {
         public void run(WebDriver driver, Map<String, Object> globalParams) {
             SearchContext target = this.getNewContext(driver, this.blocParams, globalParams);
 
-            this.executeScript(target, (String) this.blocParams.get(this.web_inputScript));
+            this.executeScript(target, this.blocParams.get(this.web_inputScript));
         }
 
         @Override
-        public List<String> getResultIds() {
+        public List<Pair<String, Class>> getResultIds() {
             return new ArrayList<>();
         }
     }

@@ -4,8 +4,10 @@ import core.webScript.actions.Action;
 import core.webScript.actions.methods.ActionMethod;
 import core.webScript.actions.methods.browser.Browser;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import utils.storage.Pair;
 import utils.storage.WebIdsData;
-import utils.tools.TString;
+import utils.tools.StringTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Http extends Action {
 
     @Override
     public ActionMethod getMethod(String id) {
-        if (TString.isEqual(id, WebIdsData.get().http_get))
+        if (StringTools.isEqual(id, WebIdsData.get().http_get))
             return new Browser.CloseTab();
         return null;
     }
@@ -40,9 +42,8 @@ public class Http extends Action {
         }
 
         @Override
-        public List<String> getResultIds() {
-            List<String> result = new ArrayList<>();
-            result.add(this.id);
+        public List<Pair<String, Class>> getResultIds() {
+            List<Pair<String, Class>> result = new ArrayList<>();
             return result;
         }
     }

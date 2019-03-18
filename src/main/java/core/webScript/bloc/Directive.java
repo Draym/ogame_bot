@@ -1,6 +1,7 @@
-package core.webScript.script.bloc;
+package core.webScript.bloc;
 
 import org.openqa.selenium.WebDriver;
+import utils.storage.Pair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,10 @@ import java.util.Map;
 
 public abstract class Directive {
     public String id;
-    public Map<String, Object> blocParams;
+    /**
+     * blocParams can only contains String or Integer
+     */
+    public Map<String, String> blocParams;
 
     public Directive() {
         this.init();
@@ -24,5 +28,5 @@ public abstract class Directive {
     }
     public abstract void run(WebDriver driver, Map<String, Object> globalParams);
     protected abstract void createParams();
-    public abstract List<String> getResultIds();
+    public abstract List<Pair<String, Class>> getResultIds();
 }

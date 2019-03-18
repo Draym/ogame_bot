@@ -1,19 +1,20 @@
-package core.webScript.script.bloc;
+package core.webScript.bloc;
 
 import org.openqa.selenium.WebDriver;
+import utils.storage.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ScriptBloc extends Directive {
+public class JobBloc extends Directive {
 
     protected List<Directive> tasks;
 
-    public ScriptBloc() {
+    public JobBloc() {
         super();
     }
-    public ScriptBloc(String id) {
+    public JobBloc(String id) {
         super(id);
     }
 
@@ -36,8 +37,8 @@ public class ScriptBloc extends Directive {
     }
 
     @Override
-    public List<String> getResultIds() {
-        List<String> result = new ArrayList<>();
+    public List<Pair<String, Class>> getResultIds() {
+        List<Pair<String, Class>> result = new ArrayList<>();
 
         for(Directive task : tasks) {
             result.addAll(task.getResultIds());

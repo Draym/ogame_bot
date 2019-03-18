@@ -1,0 +1,56 @@
+package core.webScript.bloc.operators;
+
+import core.webScript.bloc.JobBloc;
+import core.webScript.scripting.ConditionScript;
+import org.openqa.selenium.WebDriver;
+import utils.storage.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class OpCondition extends JobBloc {
+    private List<Pair<Condition, JobBloc>> opIf;
+    private Pair<Condition, JobBloc> opElse;
+
+    public OpCondition() {
+        super();
+    }
+
+    public OpCondition(String id) {
+        super(id);
+    }
+
+    private boolean checkCondition(Condition condition, Map<String, Object> globalParams) {
+
+        return ConditionScript.executeCondition(condition.value, globalParams);
+    }
+
+    @Override
+    public void run(WebDriver driver, Map<String, Object> globalParams) {
+
+        for (Pair<Condition, JobBloc> bloc : opIf) {
+            if (this.checkCondition(bloc.key, globalParams)) {
+                bloc.value.run(driver, globalParams);
+                globalParams.put(this.id, true);
+                break;
+            }
+        }
+        if (!globalParams.containsKey(this.id) && this.opElse != null && this.checkCondition(this.opElse.key, globalParams)) {
+            this.opElse.value.run(driver, globalParams);
+            globalParams.put(this.id, true);
+        }
+        globalParams.put(this.id, false);
+    }
+
+    @Override
+    protected void createParams() {
+    }
+
+    @Override
+    public List<Pair<String, Class>> getResultIds() {
+        List<Pair<String, Class>> result = new ArrayList<>();
+        result.add(new Pair<>(this.id, Boolean.class));
+        return result;
+    }
+}

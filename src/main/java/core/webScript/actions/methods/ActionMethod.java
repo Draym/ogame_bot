@@ -1,6 +1,6 @@
 package core.webScript.actions.methods;
 
-import core.webScript.script.bloc.Directive;
+import core.webScript.bloc.Directive;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import utils.storage.WebIdsData;
@@ -13,10 +13,10 @@ public abstract class ActionMethod extends Directive {
         super();
     }
 
-    protected SearchContext getNewContext(WebDriver driver, Map<String, Object> blocParams, Map<String, Object> globalParams) {
+    protected SearchContext getNewContext(WebDriver driver, Map<String, String> blocParams, Map<String, Object> globalParams) {
         if (!blocParams.containsKey(WebIdsData.get().web_driver))
             return driver;
-        String id = (String) blocParams.get(WebIdsData.get().web_driver);
+        String id = blocParams.get(WebIdsData.get().web_driver);
         return (SearchContext) globalParams.get(id);
     }
 }
