@@ -25,7 +25,7 @@ public class Job {
                 task.run(driver, globalParams);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                Console.print_err(ex.getMessage());
+                Console.log_err(ex.getMessage());
             }
         }
     }

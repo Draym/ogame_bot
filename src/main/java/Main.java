@@ -1,10 +1,14 @@
 import core.scripts.*;
+import core.webScript.scripting.ConditionScript;
+import driver.EDriver;
+import driver.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import utils.Console;
 import utils.storage.PlayerStaticData;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -13,15 +17,15 @@ public class Main {
         ScriptManager navigate = new GoToFleet();
         ScriptManager build = new BuildMetalMine();
         try {
-            Console.print("Script1--");
+            Console.log("Script1--");
             auth.run(driver);
-            Console.print("> DONE");
-            Console.print("Script2--");
+            Console.log("> DONE");
+            Console.log("Script2--");
             navigate.run(driver);
-            Console.print("> DONE");
-            Console.print("Script2--");
+            Console.log("> DONE");
+            Console.log("Script2--");
             //build.run(driver);
-            Console.print("> DONE");
+            Console.log("> DONE");
 
         } catch (Exception ex) {
             System.out.println(ex);
@@ -48,23 +52,34 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void version4(WebDriver driver) {
+        ScriptManager scriptManager1 = new SendExpe();
 
+        try {
+            scriptManager1.run(driver);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public static void main(String[] args) {
+/*
         Map<String, Object> params = new HashMap<>();
         params.put("a", 5);
         params.put("b", 5);
-        boolean result = Test.executeCondition("a == b", params);
+        boolean result = ConditionScript.executeCondition("a == b", params);
 
-        Console.print("Result: " + result);
-        return;
-        /*
+        Console.log("Result: " + result);
+        return;*/
+
         WebDriver driver = WebDriverFactory.get(EDriver.CHROME);
 
         driver.get(PlayerStaticData.url);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         //version1(driver);
-        //version2(driver);
-        version3(driver);*/
+        version2(driver);
+        //version3(driver);
+        version4(driver);
     }
 }

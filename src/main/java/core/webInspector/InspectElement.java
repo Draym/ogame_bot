@@ -19,7 +19,7 @@ public class InspectElement {
                 String className = ele.getAttribute("class");
                 String id = ele.getAttribute("id");
                 String type = ele.getTagName();
-                Console.print("--> " + type + (id != null? "#" + id : "." + className));
+                Console.log("--> " + type + (id != null? "#" + id : "." + className));
             }
             TimeUnit.SECONDS.sleep(1);
         }

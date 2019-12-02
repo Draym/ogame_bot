@@ -87,7 +87,7 @@ public class Browser extends Action {
                 this.pause(driver, Integer.parseInt(this.blocParams.get(this.milliseconds)));
             } catch (Exception ex) {
                 ex.printStackTrace();
-                Console.print_err(ex.getMessage());
+                Console.log_err(ex.getMessage());
             }
         }
 
